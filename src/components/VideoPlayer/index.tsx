@@ -9,30 +9,24 @@ interface VideoPlayerProps {
 }
 
 export default function VideoPlayer({ driveId, title }: VideoPlayerProps) {
-  const [isLoading, setIsLoading] = useState(true);
-
-  // Instead of using an iframe, we'll create a thumbnail with a play button
-  // that opens the video in a new tab when clicked
+  const [imageLoaded, setImageLoaded] = useState(false);
+  
+  // Using a more reliable format for Google Drive thumbnails
   const thumbnailUrl = `https://drive.google.com/thumbnail?id=${driveId}&sz=w1000`;
   const videoUrl = `https://drive.google.com/file/d/${driveId}/view`;
   
-  // Handle image load
-  const handleImageLoaded = () => {
-    setIsLoading(false);
-  };
-
   // Handle play button click
   const handlePlayClick = () => {
     window.open(videoUrl, '_blank');
   };
 
+  // Handle image load success
+  const handleImageLoad = () => {
+    setImageLoaded(true);
+  };
+
   return (
     <div className={styles.videoContainer}>
-      {isLoading && (
-        <div className={styles.loadingOverlay}>
-          <div className={styles.loadingSpinner}></div>
-        </div>
-      )}
       <div
         className={styles.thumbnailContainer}
         onClick={handlePlayClick}
@@ -48,8 +42,11 @@ export default function VideoPlayer({ driveId, title }: VideoPlayerProps) {
         <img
           src={thumbnailUrl}
           alt={title || "IDFSUIT Productions Video"}
-          className={styles.thumbnail}
-          onLoad={handleImageLoaded}
+          className={`${styles.thumbnail} ${imageLoaded ? styles.loaded : ''}`}
+          onLoad={handleImageLoad}
+          onError={(e) => {
+            console.error('Error loading thumbnail:', e);
+          }}
         />
         <div className={styles.playButton}>
           <svg width="68" height="48" viewBox="0 0 68 48">

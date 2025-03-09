@@ -47,7 +47,7 @@ const PortfolioSection = () => (
     <div className="container mx-auto">
       <div className="max-w-4xl mx-auto">
         <div className="bg-background-primary p-6 noir-shadow">
-          <VideoPlayer driveId="1UIz_vNwStpNWq-_fB5oY8kBVzMjw730K" title="The Lawyer Unhinged" />
+          <VideoPlayer driveId="1UIz_vNwStpNWq-_fB5oY8kBVzMjw730K" title="The Lawyer Unhinged (2025)" />
           <h3 className="text-2xl font-bold mt-6 mb-2">The Lawyer Unhinged (2025)</h3>
           <p className="text-text-secondary mb-4">Crime Drama • 2025</p>
           <p className="text-text-secondary mb-6">

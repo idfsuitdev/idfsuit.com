@@ -24,6 +24,12 @@
   height: 100%;
   object-fit: cover;
   transition: transform 0.3s ease;
+  opacity: 0;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.loaded {
+  opacity: 1;
 }
 
 .thumbnailContainer:hover .thumbnail {
@@ -67,32 +73,4 @@
   font-size: 0.9rem;
   color: #b0b0b0;
   margin: 0;
-}
-
-.loadingOverlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: rgba(10, 10, 10, 0.8);
-  z-index: 10;
-}
-
-.loadingSpinner {
-  width: 50px;
-  height: 50px;
-  border: 3px solid rgba(255, 215, 0, 0.3);
-  border-radius: 50%;
-  border-top-color: #ffd700;
-  animation: spin 1s ease-in-out infinite;
-}
-
-@keyframes spin {
-  to {
-    transform: rotate(360deg);
-  }
 }

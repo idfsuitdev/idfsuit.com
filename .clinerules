@@ -1,0 +1,105 @@
+# IDFSUIT Productions LLC - Project Rules
+
+## Project Patterns
+
+### Naming Conventions
+- Components use PascalCase (e.g., HeroSection.tsx)
+- Utility functions use camelCase (e.g., formatDate.ts)
+- CSS modules use kebab-case (e.g., hero-section.module.css)
+- Constants use UPPER_SNAKE_CASE (e.g., MAX_ITEMS)
+
+### File Organization
+- Components should be organized by feature/section when possible
+- Shared components go in a common directory
+- Each component should have its own directory with index.tsx for easy imports
+- CSS modules should be co-located with their components
+
+### Code Style
+- Prefer functional components with hooks over class components
+- Use TypeScript interfaces for component props
+- Destructure props in function parameters
+- Use meaningful variable and function names that reflect noir/production themes
+
+## Design Patterns
+
+### Noir Aesthetic Guidelines
+- High contrast between elements (light text on dark backgrounds)
+- Use of dramatic shadows and lighting effects
+- Subtle animations that enhance the noir feel
+- Typography should be elegant and sophisticated
+
+### Color Palette
+- Primary background: Near-black (#0a0a0a)
+- Secondary background: Dark gray (#1a1a1a)
+- Primary text: Off-white (#f5f5f5)
+- Secondary text: Light gray (#b0b0b0)
+- Accent: Deep red (#8b0000) used sparingly
+- Highlight: Gold/amber (#ffd700) for important elements
+
+### Animation Preferences
+- Subtle fade-ins for section reveals
+- Smooth transitions between states
+- Avoid flashy or distracting animations
+- Animations should enhance the noir storytelling
+
+## Workflow Preferences
+
+### Development Approach
+- Mobile-first responsive design
+- Component-driven development
+- Incremental implementation of features
+- Regular testing on multiple device sizes
+
+### Documentation Standards
+- Update Memory Bank after significant changes
+- Document complex components with JSDoc comments
+- Include responsive considerations in component documentation
+- Note animation behaviors in component documentation
+
+## Project Intelligence
+
+### Critical Implementation Paths
+- Noir aesthetic implementation is highest priority
+- Contact form functionality is business-critical
+- Responsive design is essential for all components
+- Performance optimization for image-heavy sections
+
+### Known Challenges
+- Balancing dark theme with readability
+- Ensuring animations perform well on mobile
+- Maintaining noir aesthetic across all screen sizes
+- Optimizing image-heavy noir visuals for performance
+
+## User Preferences
+
+### Communication Style
+- Direct and technical communication
+- Focus on visual and aesthetic details
+- Emphasis on noir and sophisticated elements
+- Attention to typography and spacing details
+
+### Priority Areas
+- Visual impact of the noir aesthetic
+- Professional presentation of production portfolio
+- Smooth, intuitive user experience
+- Mobile responsiveness for all features
+
+## Tool Usage
+
+### Next.js Patterns
+- Leverage App Router for all routing
+- Use Server Components where possible for performance
+- Client Components only when interactivity is needed
+- Metadata API for SEO optimization
+
+### CSS Approach
+- CSS Modules for component styling
+- Global variables for theme consistency
+- Mobile-first media queries
+- Fluid typography system
+
+### Form Handling
+- Formspree for form submission (endpoint: https://formspree.io/f/xanewrnn)
+- Client-side validation before submission
+- Clear success/error states
+- Required fields: Name, Email, Subject, Message

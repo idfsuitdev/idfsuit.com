@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Link from 'next/link';
 import SplashLoader from '../components/SplashLoader';
 
 // Placeholder components - will be replaced with actual components
@@ -190,8 +191,8 @@ const Footer = () => (
           <p className="text-text-secondary">© 2025 IDFSUIT Productions LLC. All rights reserved.</p>
         </div>
         <div className="flex space-x-6">
-          <a href="#" className="text-text-secondary hover:text-highlight">Privacy Policy</a>
-          <a href="#" className="text-text-secondary hover:text-highlight">Terms of Service</a>
+          <Link href="/privacy-policy" className="text-text-secondary hover:text-highlight">Privacy Policy</Link>
+          <Link href="/terms-of-service" className="text-text-secondary hover:text-highlight">Terms of Service</Link>
         </div>
       </div>
     </div>

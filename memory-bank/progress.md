@@ -108,10 +108,9 @@ The project has progressed from initial setup to implementation. We have success
 
 ## Known Issues
 
-1. Video player uses Google Drive with Content Security Policy limitations
-2. Portfolio section currently only features one production
-3. Form submission success/error states could be enhanced
-4. Some animations could be more sophisticated
+1. Portfolio section currently only features one production
+2. Form submission success/error states could be enhanced
+3. Some animations could be more sophisticated
 
 ## Success Metrics Progress
 

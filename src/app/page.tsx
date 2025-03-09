@@ -1,7 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import Image from 'next/image';
+import { useState } from 'react';
 import SplashLoader from '../components/SplashLoader';
 
 // Placeholder components - will be replaced with actual components
@@ -85,7 +84,7 @@ const ContactSection = () => {
       } else {
         setFormStatus('error');
       }
-    } catch (error) {
+    } catch {
       setFormStatus('error');
     }
   };
@@ -99,7 +98,7 @@ const ContactSection = () => {
             {formStatus === 'success' ? (
               <div className="bg-background-primary p-8 border border-highlight text-center">
                 <h3 className="text-2xl font-bold mb-4 text-highlight">Message Sent!</h3>
-                <p className="mb-6">Thank you for contacting IDFSUIT Productions LLC. We'll be in touch soon.</p>
+                <p className="mb-6">Thank you for contacting IDFSUIT Productions LLC. We&apos;ll be in touch soon.</p>
                 <button
                   onClick={() => setFormStatus('')}
                   className="bg-accent hover:bg-highlight hover:text-background-primary text-text-primary px-8 py-3 transition-colors duration-300"

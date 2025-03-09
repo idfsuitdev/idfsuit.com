@@ -62,74 +62,126 @@ const AboutSection = () => (
   </section>
 );
 
-const ContactSection = () => (
-  <section id="contact" className="section-padding bg-background-secondary">
-    <div className="container mx-auto">
-      <h2 className="text-4xl font-bold mb-12">CONTACT US</h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-        <div>
-          <form className="space-y-6">
-            <div>
-              <label htmlFor="name" className="block mb-2">Name</label>
-              <input
-                type="text"
-                id="name"
-                className="w-full p-3 bg-background-primary border border-gray-700 text-text-primary"
-                required
-              />
-            </div>
-            <div>
-              <label htmlFor="email" className="block mb-2">Email</label>
-              <input
-                type="email"
-                id="email"
-                className="w-full p-3 bg-background-primary border border-gray-700 text-text-primary"
-                required
-              />
-            </div>
-            <div>
-              <label htmlFor="subject" className="block mb-2">Subject</label>
-              <input
-                type="text"
-                id="subject"
-                className="w-full p-3 bg-background-primary border border-gray-700 text-text-primary"
-                required
-              />
-            </div>
-            <div>
-              <label htmlFor="message" className="block mb-2">Message</label>
-              <textarea
-                id="message"
-                rows={5}
-                className="w-full p-3 bg-background-primary border border-gray-700 text-text-primary"
-                required
-              ></textarea>
-            </div>
-            <button
-              type="submit"
-              className="bg-accent hover:bg-highlight hover:text-background-primary text-text-primary px-8 py-3 transition-colors duration-300"
-            >
-              SEND MESSAGE
-            </button>
-          </form>
-        </div>
-        <div>
-          <div className="mb-8">
-            <h3 className="text-2xl font-bold mb-4">IDFSUIT Productions LLC</h3>
-            <p className="mb-2">3571 Far West Blvd</p>
-            <p className="mb-2">PMB3222</p>
-            <p className="mb-2">Austin, TX 78731</p>
+const ContactSection = () => {
+  const [formStatus, setFormStatus] = useState('');
+  
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const form = e.currentTarget;
+    
+    try {
+      setFormStatus('submitting');
+      const response = await fetch('https://formspree.io/f/xanewrnn', {
+        method: 'POST',
+        body: new FormData(form),
+        headers: {
+          Accept: 'application/json',
+        },
+      });
+      
+      if (response.ok) {
+        setFormStatus('success');
+        form.reset();
+      } else {
+        setFormStatus('error');
+      }
+    } catch (error) {
+      setFormStatus('error');
+    }
+  };
+  
+  return (
+    <section id="contact" className="section-padding bg-background-secondary">
+      <div className="container mx-auto">
+        <h2 className="text-4xl font-bold mb-12">CONTACT US</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+          <div>
+            {formStatus === 'success' ? (
+              <div className="bg-background-primary p-8 border border-highlight text-center">
+                <h3 className="text-2xl font-bold mb-4 text-highlight">Message Sent!</h3>
+                <p className="mb-6">Thank you for contacting IDFSUIT Productions LLC. We'll be in touch soon.</p>
+                <button
+                  onClick={() => setFormStatus('')}
+                  className="bg-accent hover:bg-highlight hover:text-background-primary text-text-primary px-8 py-3 transition-colors duration-300"
+                >
+                  SEND ANOTHER MESSAGE
+                </button>
+              </div>
+            ) : (
+              <form className="space-y-6" onSubmit={handleSubmit}>
+                <div>
+                  <label htmlFor="name" className="block mb-2">Name</label>
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    className="w-full p-3 bg-background-primary border border-gray-700 text-text-primary"
+                    required
+                  />
+                </div>
+                <div>
+                  <label htmlFor="email" className="block mb-2">Email</label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    className="w-full p-3 bg-background-primary border border-gray-700 text-text-primary"
+                    required
+                  />
+                </div>
+                <div>
+                  <label htmlFor="subject" className="block mb-2">Subject</label>
+                  <input
+                    type="text"
+                    id="subject"
+                    name="subject"
+                    className="w-full p-3 bg-background-primary border border-gray-700 text-text-primary"
+                    required
+                  />
+                </div>
+                <div>
+                  <label htmlFor="message" className="block mb-2">Message</label>
+                  <textarea
+                    id="message"
+                    name="message"
+                    rows={5}
+                    className="w-full p-3 bg-background-primary border border-gray-700 text-text-primary"
+                    required
+                  ></textarea>
+                </div>
+                {formStatus === 'error' && (
+                  <div className="text-accent">
+                    There was an error sending your message. Please try again.
+                  </div>
+                )}
+                <button
+                  type="submit"
+                  className="bg-accent hover:bg-highlight hover:text-background-primary text-text-primary px-8 py-3 transition-colors duration-300"
+                  disabled={formStatus === 'submitting'}
+                >
+                  {formStatus === 'submitting' ? 'SENDING...' : 'SEND MESSAGE'}
+                </button>
+              </form>
+            )}
           </div>
-          <div className="mb-8">
-            <h3 className="text-2xl font-bold mb-4">Contact Information</h3>
-            <p className="mb-2">Tel: +1-512-522-2822</p>
-            <p className="mb-2">Fax: +1-737-787-2528</p>
+          <div>
+            <div className="mb-8">
+              <h3 className="text-2xl font-bold mb-4">IDFSUIT Productions LLC</h3>
+              <p className="mb-2">3571 Far West Blvd</p>
+              <p className="mb-2">PMB3222</p>
+              <p className="mb-2">Austin, TX 78731</p>
+            </div>
+            <div className="mb-8">
+              <h3 className="text-2xl font-bold mb-4">Contact Information</h3>
+              <p className="mb-2">Tel: +1-512-522-2822</p>
+              <p className="mb-2">Fax: +1-737-787-2528</p>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </section>
-);
+    </section>
+  );
+};
 
 const Footer = () => (
   <footer className="bg-background-primary py-8 border-t border-gray-800">

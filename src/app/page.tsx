@@ -6,35 +6,54 @@ import SplashLoader from '../components/SplashLoader';
 import VideoPlayer from '../components/VideoPlayer';
 
 // Placeholder components - will be replaced with actual components
-const HeroSection = () => (
-  <section id="hero" className="section-padding min-h-screen flex flex-col justify-center">
-    <div className="container mx-auto">
-      <h1 className="text-5xl md:text-7xl font-bold mb-6">
-        <span className="block">CRIME DRAMA &</span>
-        <span className="block highlight-text">URBAN SITCOMS</span>
-      </h1>
-      <p className="text-xl md:text-2xl max-w-2xl mb-8">
-        Production company specializing in noir-inspired storytelling with modern black tie sophistication.
-      </p>
-      <button className="bg-background-secondary hover:bg-accent text-text-primary px-8 py-3 border border-highlight transition-colors duration-300">
-        VIEW OUR WORK
-      </button>
-    </div>
-  </section>
-);
+const HeroSection = () => {
+  const scrollToPortfolio = () => {
+    const portfolioSection = document.getElementById('portfolio');
+    if (portfolioSection) {
+      portfolioSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  return (
+    <section id="hero" className="pt-16 pb-8 min-h-[80vh] flex flex-col justify-center">
+      <div className="container mx-auto">
+        <h1 className="mb-6 text-center">
+          <span className="block text-6xl md:text-8xl font-bold tracking-wider">IDFSUIT</span>
+          <span className="block text-2xl md:text-3xl tracking-widest mt-2 text-text-secondary">PRODUCTIONS LLC</span>
+        </h1>
+        <div className="max-w-3xl mx-auto text-center mb-10">
+          <p className="text-xl md:text-2xl mb-2 text-text-secondary font-light tracking-wide">
+            <span className="text-highlight">Austin-native</span> noir & experimental media
+          </p>
+          <p className="text-xl md:text-2xl mb-4 text-text-secondary">
+            Crime drama, urban sitcoms, and more
+          </p>
+        </div>
+        <div className="text-center">
+          <button
+            className="bg-background-secondary hover:bg-accent text-text-primary px-8 py-3 border border-highlight transition-colors duration-300"
+            onClick={scrollToPortfolio}
+          >
+            VIEW OUR WORK
+          </button>
+        </div>
+      </div>
+    </section>
+  );
+};
 
 const PortfolioSection = () => (
-  <section id="portfolio" className="section-padding bg-background-secondary">
+  <section id="portfolio" className="pt-0 pb-16 bg-background-secondary">
     <div className="container mx-auto">
-      <h2 className="text-4xl font-bold mb-12">FEATURED PRODUCTION</h2>
       <div className="max-w-4xl mx-auto">
         <div className="bg-background-primary p-6 noir-shadow">
-          <VideoPlayer driveId="1UIz_vNwStpNWq-_fB5oY8kBVzMjw730K" title="IDFSUIT Productions Demo Reel" />
-          <h3 className="text-2xl font-bold mt-6 mb-2">Demo Reel 2025</h3>
-          <p className="text-text-secondary mb-4">Crime Drama • Urban Sitcom • 2025</p>
+          <VideoPlayer driveId="1UIz_vNwStpNWq-_fB5oY8kBVzMjw730K" title="The Lawyer Unhinged" />
+          <h3 className="text-2xl font-bold mt-6 mb-2">The Lawyer Unhinged (2025)</h3>
+          <p className="text-text-secondary mb-4">Crime Drama • 2025</p>
           <p className="text-text-secondary mb-6">
-            A showcase of our latest productions featuring our signature noir aesthetic and urban storytelling.
-            This demo reel highlights our expertise in creating compelling crime dramas and urban underground sitcoms.
+            Lorenzo, a key asset to the underground as an attorney with many connections to the organized world,
+            navigates the dangerous line between law and crime. His expertise in both worlds makes him invaluable,
+            but also puts him in constant danger as he balances his professional ethics with loyalty to his clients.
             Click the thumbnail to view the full video.
           </p>
         </div>

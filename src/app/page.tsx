@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import SplashLoader from '../components/SplashLoader';
+import VideoPlayer from '../components/VideoPlayer';
 
 // Placeholder components - will be replaced with actual components
 const HeroSection = () => (
@@ -25,16 +26,17 @@ const HeroSection = () => (
 const PortfolioSection = () => (
   <section id="portfolio" className="section-padding bg-background-secondary">
     <div className="container mx-auto">
-      <h2 className="text-4xl font-bold mb-12">FEATURED PRODUCTIONS</h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {[1, 2, 3].map((item) => (
-          <div key={item} className="bg-background-primary p-4 noir-shadow">
-            <div className="bg-gray-800 h-64 mb-4"></div>
-            <h3 className="text-2xl font-bold mb-2">Production Title</h3>
-            <p className="text-text-secondary mb-4">Crime Drama • 2024</p>
-            <a href="#" className="text-highlight hover:text-text-primary">View Details</a>
-          </div>
-        ))}
+      <h2 className="text-4xl font-bold mb-12">FEATURED PRODUCTION</h2>
+      <div className="max-w-4xl mx-auto">
+        <div className="bg-background-primary p-6 noir-shadow">
+          <VideoPlayer driveId="1UIz_vNwStpNWq-_fB5oY8kBVzMjw730K" title="IDFSUIT Productions Demo Reel" />
+          <h3 className="text-2xl font-bold mt-6 mb-2">Demo Reel 2025</h3>
+          <p className="text-text-secondary mb-4">Crime Drama • Urban Sitcom • 2025</p>
+          <p className="text-text-secondary mb-6">
+            A showcase of our latest productions featuring our signature noir aesthetic and urban storytelling.
+            This demo reel highlights our expertise in creating compelling crime dramas and urban underground sitcoms.
+          </p>
+        </div>
       </div>
     </div>
   </section>

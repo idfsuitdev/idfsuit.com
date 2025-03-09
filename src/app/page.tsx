@@ -35,6 +35,7 @@ const PortfolioSection = () => (
           <p className="text-text-secondary mb-6">
             A showcase of our latest productions featuring our signature noir aesthetic and urban storytelling.
             This demo reel highlights our expertise in creating compelling crime dramas and urban underground sitcoms.
+            Click the thumbnail to view the full video.
           </p>
         </div>
       </div>

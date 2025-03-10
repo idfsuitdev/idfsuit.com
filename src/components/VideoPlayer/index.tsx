@@ -10,6 +10,7 @@ interface VideoPlayerProps {
 
 export default function VideoPlayer({ driveId, title }: VideoPlayerProps) {
   const [imageLoaded, setImageLoaded] = useState(false);
+  const [imageError, setImageError] = useState(false);
   
   // Using a more reliable format for Google Drive thumbnails
   const thumbnailUrl = `https://drive.google.com/thumbnail?id=${driveId}&sz=w1000`;
@@ -23,6 +24,14 @@ export default function VideoPlayer({ driveId, title }: VideoPlayerProps) {
   // Handle image load success
   const handleImageLoad = () => {
     setImageLoaded(true);
+    setImageError(false);
+  };
+
+  // Handle image load error
+  const handleImageError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
+    console.error('Error loading thumbnail:', e);
+    setImageError(true);
+    setImageLoaded(false);
   };
 
   return (
@@ -39,15 +48,19 @@ export default function VideoPlayer({ driveId, title }: VideoPlayerProps) {
         }}
         aria-label={`Play ${title || "IDFSUIT Productions Video"}`}
       >
-        <img
-          src={thumbnailUrl}
-          alt={title || "IDFSUIT Productions Video"}
-          className={`${styles.thumbnail} ${imageLoaded ? styles.loaded : ''}`}
-          onLoad={handleImageLoad}
-          onError={(e) => {
-            console.error('Error loading thumbnail:', e);
-          }}
-        />
+        {imageError ? (
+          <div className={styles.fallbackThumbnail}>
+            <div className={styles.fallbackTitle}>{title || "IDFSUIT Productions Video"}</div>
+          </div>
+        ) : (
+          <img
+            src={thumbnailUrl}
+            alt={title || "IDFSUIT Productions Video"}
+            className={`${styles.thumbnail} ${imageLoaded ? styles.loaded : ''}`}
+            onLoad={handleImageLoad}
+            onError={handleImageError}
+          />
+        )}
         <div className={styles.playButton}>
           <svg width="68" height="48" viewBox="0 0 68 48">
             <path

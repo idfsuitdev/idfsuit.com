@@ -1,12 +1,21 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import Link from 'next/link';
-import SplashLoader from '../components/SplashLoader';
+import HeroIntro from '../components/HeroIntro';
+import SuitMark from '../components/SuitMark';
 import VideoPlayer from '../components/VideoPlayer';
 
-// Placeholder components - will be replaced with actual components
-const HeroSection = () => {
+const INLINE_SUIT_WIDTH = 120;
+const INLINE_SUIT_HEIGHT = 144;
+
+const HeroSection = ({
+  markRef,
+  suitVisible,
+}: {
+  markRef: React.RefObject<HTMLDivElement | null>;
+  suitVisible: boolean;
+}) => {
   const scrollToPortfolio = () => {
     const portfolioSection = document.getElementById('portfolio');
     if (portfolioSection) {
@@ -17,6 +26,13 @@ const HeroSection = () => {
   return (
     <section id="hero" className="pt-16 pb-8 min-h-[80vh] flex flex-col justify-center">
       <div className="container mx-auto">
+        <div
+          ref={markRef}
+          className="flex justify-center mb-6"
+          style={{ visibility: suitVisible ? 'visible' : 'hidden' }}
+        >
+          <SuitMark width={INLINE_SUIT_WIDTH} height={INLINE_SUIT_HEIGHT} />
+        </div>
         <h1 className="mb-6 text-center">
           <span className="block text-6xl md:text-8xl font-bold tracking-wider">IDFSUIT</span>
           <span className="block text-2xl md:text-3xl tracking-widest mt-2 text-text-secondary">PRODUCTIONS LLC</span>
@@ -231,19 +247,55 @@ const Footer = () => (
   </footer>
 );
 
+interface SuitTarget {
+  cx: number;
+  cy: number;
+  width: number;
+}
+
 export default function Home() {
-  const [loading, setLoading] = useState(true);
+  const markRef = useRef<HTMLDivElement>(null);
+  const [target, setTarget] = useState<SuitTarget | null>(null);
+  const [introDone, setIntroDone] = useState(false);
+
+  useLayoutEffect(() => {
+    const measure = () => {
+      const el = markRef.current;
+      if (!el) return;
+      const rect = el.getBoundingClientRect();
+      setTarget({
+        cx: rect.left + rect.width / 2,
+        cy: rect.top + rect.height / 2,
+        width: rect.width,
+      });
+    };
+    measure();
+  }, []);
+
+  useEffect(() => {
+    if (introDone) return;
+    const onResize = () => {
+      const el = markRef.current;
+      if (!el) return;
+      const rect = el.getBoundingClientRect();
+      setTarget({
+        cx: rect.left + rect.width / 2,
+        cy: rect.top + rect.height / 2,
+        width: rect.width,
+      });
+    };
+    window.addEventListener('resize', onResize);
+    return () => window.removeEventListener('resize', onResize);
+  }, [introDone]);
 
   return (
     <>
-      {loading && <SplashLoader onComplete={() => setLoading(false)} />}
-      <div className={`transition-opacity duration-500 ${loading ? 'opacity-0' : 'opacity-100'}`}>
-        <HeroSection />
-        <PortfolioSection />
-        <AboutSection />
-        <ContactSection />
-        <Footer />
-      </div>
+      {!introDone && <HeroIntro target={target} onDone={() => setIntroDone(true)} />}
+      <HeroSection markRef={markRef} suitVisible={introDone} />
+      <PortfolioSection />
+      <AboutSection />
+      <ContactSection />
+      <Footer />
     </>
   );
 }

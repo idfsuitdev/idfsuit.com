@@ -8,98 +8,49 @@
   box-shadow: 0 10px 30px -15px rgba(0, 0, 0, 0.7);
 }
 
-.thumbnailContainer {
+.videoFrame {
   position: relative;
   width: 100%;
-  padding-top: 56.25%; /* 16:9 Aspect Ratio */
-  overflow: hidden;
-  cursor: pointer;
+  padding-top: 56.25%;
 }
 
-.thumbnail {
+.video {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.3s ease;
-  opacity: 0;
-  transition: opacity 0.3s ease, transform 0.3s ease;
+  background-color: #0a0a0a;
 }
 
-.loaded {
-  opacity: 1;
-}
-
-.thumbnailContainer:hover .thumbnail {
-  transform: scale(1.05);
-}
-
-.fallbackThumbnail {
+.playOverlay {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: #1a1a1a;
+  inset: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: transform 0.3s ease;
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: transform 0.2s ease;
 }
 
-.thumbnailContainer:hover .fallbackThumbnail {
+.playOverlay:hover {
   transform: scale(1.05);
 }
 
-.fallbackTitle {
-  font-size: 1.2rem;
-  font-weight: bold;
-  color: #f5f5f5;
-  text-align: center;
-  padding: 1rem;
-  max-width: 80%;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-  border: 2px solid #8b0000;
-  background-color: rgba(10, 10, 10, 0.7);
-}
-
-.thumbnailContainer:focus {
+.playOverlay:focus-visible {
   outline: 2px solid #ffd700;
-  outline-offset: 2px;
-}
-
-.playButton {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 2;
-  transition: transform 0.2s ease;
-  pointer-events: none; /* Allow clicks to pass through to the container */
-}
-
-.thumbnailContainer:hover .playButton {
-  transform: translate(-50%, -50%) scale(1.1);
+  outline-offset: -4px;
 }
 
 .playButtonBg {
-  opacity: 0.8;
+  opacity: 0.85;
+  transition: opacity 0.2s ease;
 }
 
-.playButton:hover .playButtonBg {
+.playOverlay:hover .playButtonBg {
   opacity: 1;
-  fill: rgba(33, 33, 33, 0.9);
-}
-
-.videoInfo {
-  padding: 12px 0;
-  text-align: center;
-}
-
-.videoCaption {
-  font-size: 0.9rem;
-  color: #b0b0b0;
-  margin: 0;
 }

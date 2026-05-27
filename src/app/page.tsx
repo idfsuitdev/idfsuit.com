@@ -47,14 +47,17 @@ const PortfolioSection = () => (
     <div className="container mx-auto">
       <div className="max-w-4xl mx-auto">
         <div className="bg-background-primary p-6 noir-shadow">
-          <VideoPlayer driveId="1UIz_vNwStpNWq-_fB5oY8kBVzMjw730K" title="The Lawyer Unhinged (2025)" />
+          <VideoPlayer
+            src="https://cdn.subfrost.io/media/the-lawyer-unhinged.mp4"
+            poster="/the-lawyer-unhinged-poster.jpg"
+            title="The Lawyer Unhinged (2025)"
+          />
           <h3 className="text-2xl font-bold mt-6 mb-2">The Lawyer Unhinged (2025)</h3>
           <p className="text-text-secondary mb-4">Crime Drama • 2025</p>
           <p className="text-text-secondary mb-6">
             Lorenzo, a key asset to the underground as an attorney with many connections to the organized world,
             navigates the dangerous line between law and crime. His expertise in both worlds makes him invaluable,
             but also puts him in constant danger as he balances his professional ethics with loyalty to his clients.
-            Click the thumbnail to view the full video.
           </p>
         </div>
       </div>
@@ -78,7 +81,14 @@ const AboutSection = () => (
             Based in Austin, TX, we bring urban underground expertise to every production.
           </p>
         </div>
-        <div className="bg-gray-800 h-96 noir-shadow"></div>
+        <div className="relative h-96 noir-shadow overflow-hidden">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/about-still.jpg"
+            alt="Still from The Lawyer Unhinged"
+            className="absolute inset-0 w-full h-full object-cover"
+          />
+        </div>
       </div>
     </div>
   </section>

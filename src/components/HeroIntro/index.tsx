@@ -7,7 +7,6 @@ import styles from './hero-intro.module.css';
 interface TargetRect {
   cx: number;
   cy: number;
-  width: number;
 }
 
 interface HeroIntroProps {
@@ -17,6 +16,10 @@ interface HeroIntroProps {
 
 const DRAW_MS = 2500;
 const SETTLE_MS = 1200;
+// The overlay SVG is rendered at 200×240 and the inline mark at 120×144,
+// so the final scale is the ratio of the two — a constant, not measured
+// off the wrapper (which is full-width because of flex).
+const FINAL_SCALE = 120 / 200;
 
 type Phase = 'draw' | 'settle' | 'done';
 
@@ -42,12 +45,11 @@ export default function HeroIntro({ target, onDone }: HeroIntroProps) {
   const vh = typeof window !== 'undefined' ? window.innerHeight : 900;
   const dx = target.cx - vw / 2;
   const dy = target.cy - vh / 2;
-  const finalScale = target.width / 200;
 
   const transform =
     phase === 'draw'
       ? 'translate(-50%, -50%) scale(1.4)'
-      : `translate(-50%, -50%) translate(${dx}px, ${dy}px) scale(${finalScale})`;
+      : `translate(-50%, -50%) translate(${dx}px, ${dy}px) scale(${FINAL_SCALE})`;
 
   return (
     <>

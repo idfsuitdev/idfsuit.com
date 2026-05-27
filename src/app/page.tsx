@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useLayoutEffect, useRef, useState } from 'react';
+import { useLayoutEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import HeroIntro from '../components/HeroIntro';
 import SuitMark from '../components/SuitMark';
@@ -26,6 +26,10 @@ const HeroSection = ({
   return (
     <section id="hero" className="pt-16 pb-8 min-h-[80vh] flex flex-col justify-center">
       <div className="container mx-auto">
+        <h1 className="mb-6 text-center">
+          <span className="block text-6xl md:text-8xl font-bold tracking-wider">IDFSUIT</span>
+          <span className="block text-2xl md:text-3xl tracking-widest mt-2 text-text-secondary">PRODUCTIONS LLC</span>
+        </h1>
         <div
           ref={markRef}
           className="flex justify-center mb-6"
@@ -33,10 +37,6 @@ const HeroSection = ({
         >
           <SuitMark width={INLINE_SUIT_WIDTH} height={INLINE_SUIT_HEIGHT} />
         </div>
-        <h1 className="mb-6 text-center">
-          <span className="block text-6xl md:text-8xl font-bold tracking-wider">IDFSUIT</span>
-          <span className="block text-2xl md:text-3xl tracking-widest mt-2 text-text-secondary">PRODUCTIONS LLC</span>
-        </h1>
         <div className="max-w-3xl mx-auto text-center mb-10">
           <p className="text-xl md:text-2xl mb-2 text-text-secondary font-light tracking-wide">
             <span className="text-highlight">Austin-native</span> noir & experimental media
@@ -250,7 +250,6 @@ const Footer = () => (
 interface SuitTarget {
   cx: number;
   cy: number;
-  width: number;
 }
 
 export default function Home() {
@@ -262,31 +261,20 @@ export default function Home() {
     const measure = () => {
       const el = markRef.current;
       if (!el) return;
-      const rect = el.getBoundingClientRect();
+      // The wrapper is full-width (flex container); only the SVG inside
+      // has the real footprint. Use the SVG itself for the centre point.
+      const svg = el.querySelector('svg');
+      const rect = (svg ?? el).getBoundingClientRect();
       setTarget({
         cx: rect.left + rect.width / 2,
         cy: rect.top + rect.height / 2,
-        width: rect.width,
       });
     };
     measure();
-  }, []);
-
-  useEffect(() => {
-    if (introDone) return;
-    const onResize = () => {
-      const el = markRef.current;
-      if (!el) return;
-      const rect = el.getBoundingClientRect();
-      setTarget({
-        cx: rect.left + rect.width / 2,
-        cy: rect.top + rect.height / 2,
-        width: rect.width,
-      });
-    };
+    const onResize = () => measure();
     window.addEventListener('resize', onResize);
     return () => window.removeEventListener('resize', onResize);
-  }, [introDone]);
+  }, []);
 
   return (
     <>

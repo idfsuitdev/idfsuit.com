@@ -26,10 +26,6 @@ const HeroSection = ({
   return (
     <section id="hero" className="pt-16 pb-8 min-h-[80vh] flex flex-col justify-center">
       <div className="container mx-auto">
-        <h1 className="mb-6 text-center">
-          <span className="block text-6xl md:text-8xl font-bold tracking-wider">IDFSUIT</span>
-          <span className="block text-2xl md:text-3xl tracking-widest mt-2 text-text-secondary">PRODUCTIONS LLC</span>
-        </h1>
         <div
           ref={markRef}
           className="flex justify-center mb-6"
@@ -37,6 +33,10 @@ const HeroSection = ({
         >
           <SuitMark width={INLINE_SUIT_WIDTH} height={INLINE_SUIT_HEIGHT} />
         </div>
+        <h1 className="mb-6 text-center">
+          <span className="block text-6xl md:text-8xl font-bold tracking-wider">IDFSUIT</span>
+          <span className="block text-2xl md:text-3xl tracking-widest mt-2 text-text-secondary">PRODUCTIONS LLC</span>
+        </h1>
         <div className="max-w-3xl mx-auto text-center mb-10">
           <p className="text-xl md:text-2xl mb-2 text-text-secondary font-light tracking-wide">
             <span className="text-highlight">Austin-native</span> noir & experimental media

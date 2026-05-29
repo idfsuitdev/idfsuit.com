@@ -3,6 +3,15 @@
 @theme {
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+
+  /* Noir palette registered as Tailwind color tokens so utilities like
+     bg-background-secondary / text-highlight / border-accent resolve. */
+  --color-background-primary: #0a0a0a;
+  --color-background-secondary: #1a1a1a;
+  --color-text-primary: #f5f5f5;
+  --color-text-secondary: #b0b0b0;
+  --color-accent: #8b0000;
+  --color-highlight: #ffd700;
 }
 
 :root {

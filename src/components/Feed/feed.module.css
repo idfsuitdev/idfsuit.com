@@ -1,0 +1,385 @@
+/* IDFSUIT noir Instagram-style feed */
+
+.page {
+  min-height: 100vh;
+  background: var(--background-primary);
+}
+
+/* ---- Top brand bar (sticky) ---- */
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.75rem 1.25rem;
+  background: rgba(10, 10, 10, 0.82);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid #1f1f1f;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: var(--text-primary);
+}
+
+.brand .suit {
+  color: var(--highlight);
+}
+
+.brandName {
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  font-size: 1.05rem;
+}
+
+.nav {
+  display: flex;
+  gap: 1.25rem;
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+}
+
+.nav a {
+  color: var(--text-secondary);
+}
+
+.nav a:hover {
+  color: var(--highlight);
+}
+
+/* ---- Profile header ---- */
+.profile {
+  max-width: 935px;
+  margin: 0 auto;
+  padding: 2.5rem 1.25rem 1.5rem;
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+}
+
+.avatarRing {
+  flex: 0 0 auto;
+  width: 132px;
+  height: 132px;
+  border-radius: 50%;
+  padding: 3px;
+  background: linear-gradient(135deg, var(--highlight), var(--accent));
+}
+
+.avatar {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid var(--background-primary);
+  background: var(--background-secondary);
+}
+
+.profileMeta {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.profileTop {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+
+.handle {
+  font-size: 1.4rem;
+  font-weight: 300;
+  letter-spacing: 0.02em;
+  color: var(--text-primary);
+}
+
+.followBtn {
+  padding: 0.4rem 1.4rem;
+  font-size: 0.8rem;
+  letter-spacing: 0.12em;
+  color: var(--text-primary);
+  background: var(--background-secondary);
+  border: 1px solid var(--highlight);
+  transition: background 0.25s ease, color 0.25s ease;
+}
+
+.followBtn:hover {
+  background: var(--highlight);
+  color: var(--background-primary);
+}
+
+.stats {
+  display: flex;
+  gap: 2rem;
+  margin-bottom: 1rem;
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+}
+
+.stats strong {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.fullName {
+  color: var(--text-primary);
+  font-weight: 600;
+  margin-bottom: 0.35rem;
+}
+
+.bio {
+  color: var(--text-secondary);
+  white-space: pre-line;
+  line-height: 1.5;
+  font-size: 0.92rem;
+}
+
+/* ---- Section divider label ---- */
+.feedLabel {
+  max-width: 935px;
+  margin: 0 auto;
+  padding: 1rem 1.25rem 0.5rem;
+  border-top: 1px solid #1f1f1f;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  color: var(--text-secondary);
+  font-size: 0.72rem;
+  letter-spacing: 0.3em;
+}
+
+/* ---- Feed column ---- */
+.feed {
+  max-width: 515px;
+  margin: 0 auto;
+  padding: 1rem 0 4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.card {
+  background: var(--background-secondary);
+  border: 1px solid #1f1f1f;
+  box-shadow: 0 10px 30px -15px rgba(0, 0, 0, 0.7);
+  opacity: 0;
+  transform: translateY(14px);
+  animation: cardIn 0.55s ease forwards;
+}
+
+@keyframes cardIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.cardHead {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 0.7rem 0.9rem;
+}
+
+.cardAvatar {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid var(--highlight);
+}
+
+.cardHandle {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.cardDate {
+  margin-left: auto;
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  color: var(--text-secondary);
+}
+
+.media {
+  position: relative;
+  display: block;
+  width: 100%;
+  background: #000;
+  overflow: hidden;
+}
+
+.media img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  transition: transform 0.6s ease, filter 0.6s ease;
+}
+
+.media:hover img {
+  transform: scale(1.03);
+  filter: brightness(1.05);
+}
+
+.badge {
+  position: absolute;
+  top: 0.6rem;
+  right: 0.6rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.25rem 0.5rem;
+  font-size: 0.7rem;
+  color: var(--text-primary);
+  background: rgba(0, 0, 0, 0.6);
+  border: 1px solid rgba(255, 215, 0, 0.4);
+  backdrop-filter: blur(2px);
+}
+
+.cardBody {
+  padding: 0.7rem 0.9rem 1rem;
+}
+
+.actions {
+  display: flex;
+  gap: 1.1rem;
+  margin-bottom: 0.6rem;
+  color: var(--text-primary);
+  font-size: 0.9rem;
+}
+
+.action {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.action svg {
+  width: 22px;
+  height: 22px;
+}
+
+.likeIcon {
+  color: var(--accent);
+}
+
+.caption {
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: var(--text-secondary);
+  white-space: pre-line;
+}
+
+.caption .author {
+  color: var(--text-primary);
+  font-weight: 600;
+  margin-right: 0.4rem;
+}
+
+.tag,
+.mention {
+  color: var(--highlight);
+}
+
+.more {
+  background: none;
+  border: none;
+  padding: 0;
+  margin-left: 0.25rem;
+  color: var(--text-secondary);
+  cursor: pointer;
+  font: inherit;
+}
+
+.more:hover {
+  color: var(--highlight);
+}
+
+.viewOn {
+  display: inline-block;
+  margin-top: 0.6rem;
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  color: var(--text-secondary);
+}
+
+.viewOn:hover {
+  color: var(--highlight);
+}
+
+/* ---- Sentinel / loader ---- */
+.sentinel {
+  height: 1px;
+}
+
+.loader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  padding: 1.5rem 0;
+  color: var(--text-secondary);
+  font-size: 0.72rem;
+  letter-spacing: 0.3em;
+}
+
+.spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid #333;
+  border-top-color: var(--highlight);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 640px) {
+  .profile {
+    flex-direction: column;
+    text-align: center;
+    gap: 1.25rem;
+    padding-top: 1.75rem;
+  }
+
+  .avatarRing {
+    width: 96px;
+    height: 96px;
+  }
+
+  .profileTop,
+  .stats {
+    justify-content: center;
+  }
+
+  .bio {
+    text-align: left;
+  }
+
+  .nav {
+    gap: 0.9rem;
+  }
+}
